@@ -3,20 +3,20 @@ using namespace std;
 
 void bubble_sort(vector<int> &arr, int n)
 {
-    for (int i = n - 1; i >= 0; i--)
+    if (n == 1)
+        return;
+
+    for (int j = 0; j <= n - 2; j++)
     {
-        bool swapped = false;
-        for (int j = 0; j <= i - 1; j++)
+        if (arr[j] > arr[j + 1])
         {
-            if (arr[j] > arr[j + 1])
-            {
-                swap(arr[j], arr[j + 1]);
-                swapped = true;
-            }
+            int temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
         }
-        if (!swapped)
-            break;
     }
+
+    bubble_sort(arr, n - 1);
 }
 
 int main()
@@ -28,7 +28,7 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> arr[i];
 
-    cout << "Unsorted array: ";
+    cout << "Original array: ";
     for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
     cout << endl;
@@ -38,7 +38,6 @@ int main()
     cout << "Sorted array: ";
     for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
-    cout << endl;
 
     return 0;
 }
